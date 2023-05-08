@@ -32,6 +32,12 @@ pipeline {
       }
     }
 
+    stage('SonarQube - SAST') {
+      steps {
+        sh "mvn clean verify sonar:sonar -Dsonar.projectKey=numeric-application -Dsonar.projectName='Numeric Application' -Dsonar.host.url=http://devsecops-prasad-cloud.eastus.cloudapp.azure.com:9000 -Dsonar.token=sqp_bfd34d001abfa39765364898b6a9fd99260c63c0"
+      }
+    }
+
     stage('Docker Build and Push') {
       steps {
         withDockerRegistry([credentialsId: 'docker-hub', url: '']) {
@@ -39,12 +45,6 @@ pipeline {
           sh 'docker build -t csivaprasadc/numeric-app:""$GIT_COMMIT"" .'
           sh 'docker push csivaprasadc/numeric-app:""$GIT_COMMIT""'
         }
-      }
-    }
-
-    stage('SonarQube - SAST') {
-      steps {
-        sh "mvn clean verify sonar:sonar -Dsonar.projectKey=numeric-application -Dsonar.projectName='Numeric Application' -Dsonar.host.url=http://devsecops-prasad-cloud.eastus.cloudapp.azure.com:9000 -Dsonar.token=sqp_bfd34d001abfa39765364898b6a9fd99260c63c0"
       }
     }
 
