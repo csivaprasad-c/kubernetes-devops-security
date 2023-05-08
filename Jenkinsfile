@@ -21,6 +21,17 @@ pipeline {
       }
     }
 
+    stage('Mutation Tests - PIT') {
+      steps {
+        sh "mvn org.pitest:pitest-maven:mutationCoverage"
+      }
+      post {
+        always {
+          pitmutation mutationStatsFile: '**/target/pit-reports/**/mutations.xml'
+        }
+      }
+    }
+
     stage('Docker Build and Push') {
       steps {
         withDockerRegistry([credentialsId: 'docker-hub', url: '']) {
@@ -31,14 +42,9 @@ pipeline {
       }
     }
 
-    stage('Mutation Tests - PIT') {
+    stage('SonarQube - SAST') {
       steps {
-        sh "mvn org.pitest:pitest-maven:mutationCoverage"
-      }
-      post {
-        always {
-          pitmutation mutationStatsFile: '**/target/pit-reports/**/mutations.xml'
-        }
+        sh "mvn clean verify sonar:sonar -Dsonar.projectKey=numeric-application -Dsonar.projectName='Numeric Application' -Dsonar.host.url=http://devsecops-prasad-cloud.eastus.cloudapp.azure.com:9000 -Dsonar.token=sqp_bfd34d001abfa39765364898b6a9fd99260c63c0"
       }
     }
 
