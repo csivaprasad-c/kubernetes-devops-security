@@ -9,7 +9,7 @@ pipeline {
     applicationURL = "http://devsecops-prasad-cloud.eastus.cloudapp.azure.com/"
     applicationURI = "/increment/99"
     TRIVY_PASSWORD = credentials("TRIVY_PASSWORD")
-    TRIVY_USERNAME = csivaprasadc
+    TRIVY_USERNAME = "csivaprasadc"
   }
 
   stages {
