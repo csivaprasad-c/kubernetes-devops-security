@@ -16,7 +16,7 @@ pipeline {
     stage('Build Artifact') {
       steps {
         withMaven {
-            sh "/root/apache-maven-3.9.1/bin/mvn clean package -DskipTests=true"
+            sh "mvn clean package -DskipTests=true"
             archiveArtifacts artifacts: 'target/*.jar', followSymlinks: false
         }
       }
@@ -24,13 +24,13 @@ pipeline {
 
     stage('Unit Tests') {
       steps {
-        sh "/root/apache-maven-3.9.1/bin/mvn test"
+        sh "mvn test"
       }
     }
 
     stage('Mutation Tests - PIT') {
       steps {
-        sh "/root/apache-maven-3.9.1/bin/mvn org.pitest:pitest-maven:mutationCoverage"
+        sh "mvn org.pitest:pitest-maven:mutationCoverage"
       }
       post {
         always {
@@ -42,7 +42,7 @@ pipeline {
     stage('SonarQube - SAST') {
       steps {
         withSonarQubeEnv('SonarQube') {
-          sh "/root/apache-maven-3.9.1/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=numeric-application -Dsonar.projectName='Numeric Application' -Dsonar.host.url=http://devsecops-prasad-cloud.eastus.cloudapp.azure.com:9000"
+          sh "mvn clean verify sonar:sonar -Dsonar.projectKey=numeric-application -Dsonar.projectName='Numeric Application' -Dsonar.host.url=http://devsecops-prasad-cloud.eastus.cloudapp.azure.com:9000"
         }
         timeout(time: 2, unit: 'MINUTES') {
           script {
@@ -56,7 +56,7 @@ pipeline {
       steps {
         parallel(
           "Dependency Scan": {
-            sh "/root/apache-maven-3.9.1/bin/mvn dependency-check:check"
+            sh "mvn dependency-check:check"
           },
           "Trivy Scan": {
             sh "bash trivy-docker-image-scan.sh"
