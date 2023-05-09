@@ -8,6 +8,8 @@ pipeline {
     imageName = "csivaprasadc/numeric-app:${GIT_COMMIT}"
     applicationURL = "http://devsecops-prasad-cloud.eastus.cloudapp.azure.com/"
     applicationURI = "/increment/99"
+    TRIVY_PASSWORD = credentials("TRIVY_PASSWORD")
+    TRIVY_USERNAME = csivaprasadc
   }
 
   stages {
