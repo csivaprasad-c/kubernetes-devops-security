@@ -16,7 +16,6 @@ pipeline {
     stage('Build Artifact') {
       steps {
         withMaven {
-            sh "echo $(mvn )"
             sh "/root/apache-maven-3.9.1/bin/mvn clean package -DskipTests=true"
             archiveArtifacts artifacts: 'target/*.jar', followSymlinks: false
         }
