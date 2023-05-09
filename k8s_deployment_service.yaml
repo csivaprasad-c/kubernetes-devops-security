@@ -23,6 +23,13 @@ spec:
             runAsNonRoot: true
             runAsUser: 100
             readOnlyRootFilesystem: true
+          volumeMounts:
+            - mountPath: /tmp
+              name: vol
+      volumes:
+        - name: vol
+          emptyDir: {}
+
 ---
 apiVersion: v1
 kind: Service
