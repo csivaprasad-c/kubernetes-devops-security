@@ -18,7 +18,7 @@ if [[ ! -z "$PORT" ]]; then
     exit 1;
   fi
 
-  if [[ "http_code" == 200 ]]; then
+  if [[ "$http_code" == 200 ]]; then
     echo "HTTP Status Code Test passed"
   else
     echo "HTTP Status Code is not 200"
