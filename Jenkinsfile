@@ -10,7 +10,7 @@ pipeline {
     containerName = "devsecops-container"
     serviceName = "devsecops-svc"
     imageName = "csivaprasadc/numeric-app:${GIT_COMMIT}"
-    applicationURL = "http://devsecops-prasad-cloud.eastus.cloudapp.azure.com/"
+    applicationURL = "http://devsecops-prasad-cloud.eastus.cloudapp.azure.com"
     applicationURI = "/increment/99"
     TRIVY_PASSWORD = credentials("TRIVY_PASSWORD")
     TRIVY_USERNAME = "csivaprasadc"
@@ -113,6 +113,24 @@ pipeline {
           }
         )
       }
+    }
+  }
+
+  stage('Integration Tests - DEV') {
+    steps {
+        script {
+            try {
+                withKubeConfig([credentialsId: 'kubeconfig']) {
+                    sh "bash integration-test.sh"
+                }
+            }
+            catch(e) {
+                withKubeConfig([credentialsId: 'kubeconfig']) {
+                    sh "kubectl -n default rollout undo deploy ${deploymentName}"
+                }
+                throw e
+            }
+        }
     }
   }
 
