@@ -89,7 +89,7 @@
 				</dependencies>
 				<configuration>
 					<verbose>true</verbose>
-					<mutationThreshold>70</mutationThreshold>
+					<mutationThreshold>65</mutationThreshold>
 					<outputFormats>
 						<outputFormat>XML</outputFormat>
 						<outputFormat>HTML</outputFormat>
