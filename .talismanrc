@@ -4,4 +4,4 @@ fileignoreconfig:
   - filename: pom.xml
     checksum: 04c8a146dea76c9f3935388073b7358d4eca4d8d7f3887790b74494dece81f84
   - filename: zap.sh
-    checksum: d096cc14103fbf1616d33c2a2e045731632a62b420c8b32c89e566235ec014ba
+    checksum: 66a0e39bc395a3ac89ab2aaf37c4824697d981fedf925f51b34cb9158b5290a5
