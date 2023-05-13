@@ -167,7 +167,24 @@ pipeline {
         }
       }
     }
-
+    
+    stage('k8s Deployment - PROD') {
+      steps {
+        parallel(
+          "Deployment": {
+            withKubeConfig([credentialsId: 'kubeconfig']) {
+              sh "sed -i 's#replace#${imageName}#g' k8s_PROD-deployment_service.yaml"
+              sh "kubectl -n prod apply -f k8s_PROD-deployment_service.yaml" 
+            }
+          },
+          "Rollout Status": {
+            withKubeConfig([credentialsId: 'kubeconfig']) {
+              sh "bash k8s-PROD-deployment-rollout-status.sh"
+            }
+          }
+        )
+      }
+    }
     // stage('Testing Slack') {
     //   steps {
     //     sh 'exit 1'
@@ -177,10 +194,10 @@ pipeline {
 
   post {
     always {
-        // junit 'target/surefire-reports/*.xml'
-        // jacoco execPattern: 'target/jacoco.exec'
-        // dependencyCheckPublisher pattern: 'target/dependency-check-report.xml'
-        // publishHTML([allowMissing: false, alwaysLinkToLastBuild: true, keepAll: true, reportDir: 'owasp-zap-report', reportFiles: 'zap_report.html', reportName: 'OWASP ZAP HTML Report', reportTitles: 'OWASP ZAP HTML Report', useWrapperFileDirectly: true])
+        junit 'target/surefire-reports/*.xml'
+        jacoco execPattern: 'target/jacoco.exec'
+        dependencyCheckPublisher pattern: 'target/dependency-check-report.xml'
+        publishHTML([allowMissing: false, alwaysLinkToLastBuild: true, keepAll: true, reportDir: 'owasp-zap-report', reportFiles: 'zap_report.html', reportName: 'OWASP ZAP HTML Report', reportTitles: 'OWASP ZAP HTML Report', useWrapperFileDirectly: true])
         SendNotification currentBuild.result
     }
   }
