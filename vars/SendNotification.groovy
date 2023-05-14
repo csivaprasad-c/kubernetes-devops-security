@@ -2,7 +2,7 @@ def call(String buildStatus = 'STARTED') {
     buildStatus = buildStatus ?: 'SUCCESS'
 
     def color
-    
+
     if(buildStatus == 'SUCCESS') {
         color = '#47ec05'
         emoji = ':ww:'
@@ -40,7 +40,7 @@ def call(String buildStatus = 'STARTED') {
                     ],
                     "accessory": [
                         "type": "image",
-                        "image_url": "https://raw.githubusercontent.com/sidd-harth/numeric/main/images/jenkins-slack.png",
+                        "image_url": "https://raw.githubusercontent.com/sidd-harth/devsecops-k8s-demo/main/slack-emojis/jenkins-slack.png",
                         "alt_text": "Slack Icon"
                     ] 
                 ],
@@ -79,7 +79,7 @@ def call(String buildStatus = 'STARTED') {
                     ],
                     "accessory": [
                         "type": "image",
-                        "image_url": "https://raw.githubusercontent.com/sidd-harth/numeric/main/images/k8s-slack.png",
+                        "image_url": "https://raw.githubusercontent.com/sidd-harth/devsecops-k8s-demo/main/slack-emojis/k8s-slack.png",
                         "alt_text": "Kubernetes Icon"
                     ]
                 ],
@@ -118,7 +118,7 @@ def call(String buildStatus = 'STARTED') {
                     ],
                     "accessory": [
                         "type": "image",
-                        "image_url": "https://raw.githubusercontent.com/sidd-harth/numeric/main/images/github-slack.png",
+                        "image_url": "https://raw.githubusercontent.com/sidd-harth/devsecops-k8s-demo/main/slack-emojis/github-slack.png",
                         "alt_text": "GitHub Icon"                      
                     ]
                 ],

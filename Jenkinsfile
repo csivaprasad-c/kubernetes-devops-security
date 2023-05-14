@@ -8,7 +8,7 @@ import org.jenkinsci.plugins.workflow.actions.ErrorAction
 @NonCPS
 List<Map> getStageResults(RunWrapper build) {
   def visitor = new PipelineNodeGraphVisitor(build.rawBuild)
-  def stages = visitor.pipelineNodesfindAll{ it.type == FlowNodeWrapper.NodeType.STAGE }
+  def stages = visitor.pipelineNodes.findAll{ it.type == FlowNodeWrapper.NodeType.STAGE }
 
   return stages.collect{ stage ->
     def errorActions = stage.getPipelineActions(ErrorAction)
