@@ -41,7 +41,7 @@ def call(String buildStatus = 'STARTED') {
                     ],
                     "accessory": [
                         "type": "image",
-                        "image_url": "https://raw.githubusercontent.com/sidd-harth/numeric/main/images/jenkins-slacks.png",
+                        "image_url": "https://raw.githubusercontent.com/sidd-harth/numeric/main/images/jenkins-slack.png",
                         "alt_text": "Slack Icon"
                     ] 
                 ],
@@ -62,6 +62,45 @@ def call(String buildStatus = 'STARTED') {
                         "url": "${env.BUILD_URL}",
                         "action_id": "button-action"
                     ]
+                ],
+                [
+                    "type": "divider"
+                ],
+                [
+                    "type": "section",
+                    "fields": [
+                        [
+                            "type": "mrkdwn",
+                            "text": "*Kubernetes Deployment Name:*\n${deploymentName}"
+                        ],
+                        [
+                            "type": "mrkdwn",
+                            "text": "*Node Port:*\n32564"
+                        ],
+                    ],
+                    "accessory": [
+                        "type": "image",
+                        "image_url": "https://raw.githubusercontent.com/sidd-harth/numeric/main/images/k8s-slack.png",
+                        "alt_text": "Kubernetes Icon"
+                    ]
+                ],
+                [
+                    "type": "section",
+                     "text": [
+                        "type": "mrkdwn",
+                        "text": "*Kubernetes Node: * `controlplane`"
+                    ],
+                    "accessory": [
+                        "type": "button",
+                        "text": [
+                            "type": "plain_text",
+                            "text": "Application URL",
+                            "emoji": true                          
+                        ],
+                        "value": "click_me_123",
+                        "url": "${applicationURL}:32564",
+                        "action_id": "button-action"
+                    ]                  
                 ],
                 [
                     "type": "divider"
