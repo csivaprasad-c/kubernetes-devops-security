@@ -184,6 +184,7 @@ pipeline {
           }
         )
       }
+    }
 
     stage('Integration Tests - PROD') {
       steps {
@@ -201,7 +202,7 @@ pipeline {
         }
       }
     }
-    }
+    
     // stage('Testing Slack') {
     //   steps {
     //     sh 'exit 1'
