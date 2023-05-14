@@ -265,7 +265,7 @@ pipeline {
       script {
         def failedStages = getFailedStages(currentBuild)
         env.failedStage = failedStages.failedStageName
-        env.emoji = ":xx: :red_circle: :sos:"
+        env.emoji = ":x: :red_circle: :sos:"
         SendNotification currentBuild.result
       }
     }
