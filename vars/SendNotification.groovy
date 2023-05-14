@@ -2,8 +2,7 @@ def call(String buildStatus = 'STARTED') {
     buildStatus = buildStatus ?: 'SUCCESS'
 
     def color
-    def emoji
-
+    
     if(buildStatus == 'SUCCESS') {
         color = '#47ec05'
         emoji = ':ww:'
@@ -110,11 +109,11 @@ def call(String buildStatus = 'STARTED') {
                     "fields": [
                         [
                             "type": "mrkdwn",
-                            "text": "*Git Commit:*\n${env.GIT_COMMIT}"
+                            "text": "*Git Commit:*\n${GIT_COMMIT}"
                         ],
                         [
                             "type": "mrkdwn",
-                            "text": "*Git Previous Success Commit:*\n${env.GIT_PREVIOUS_SUCCESSFUL_COMMIT}"
+                            "text": "*Git Previous Success Commit:*\n${GIT_PREVIOUS_SUCCESSFUL_COMMIT}"
                         ],
                     ],
                     "accessory": [
