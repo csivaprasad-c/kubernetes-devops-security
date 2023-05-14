@@ -230,8 +230,14 @@ pipeline {
     //     }
     //   }
     // }
+
+    stage('Testing Slack - success') {
+      steps {
+        sh 'exit 0'
+      }
+    }
     
-    stage('Testing Slack') {
+    stage('Testing Slack - 2') {
       steps {
         sh 'exit 1'
       }
@@ -259,7 +265,7 @@ pipeline {
       script {
         def failedStages = getFailedStages(currentBuild)
         env.failedStage = failedStages.failedStageName
-        env.emoji = ":xx :red_circle :sos:"
+        env.emoji = ":xx: :red_circle: :sos:"
         SendNotification currentBuild.result
       }
     }

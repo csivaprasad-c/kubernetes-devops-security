@@ -40,7 +40,7 @@ def call(String buildStatus = 'STARTED') {
                     ],
                     "accessory": [
                         "type": "image",
-                        "image_url": "https://raw.githubusercontent.com/sidd-harth/devsecops-k8s-demo/main/slack-emojis/jenkins-slack.png",
+                        "image_url": "https://raw.githubusercontent.com/csivaprasad-c/kubernetes-devops-security/main/slack-emojis/jenkins.png",
                         "alt_text": "Slack Icon"
                     ] 
                 ],
@@ -79,7 +79,7 @@ def call(String buildStatus = 'STARTED') {
                     ],
                     "accessory": [
                         "type": "image",
-                        "image_url": "https://raw.githubusercontent.com/sidd-harth/devsecops-k8s-demo/main/slack-emojis/k8s-slack.png",
+                        "image_url": "https://raw.githubusercontent.com/csivaprasad-c/kubernetes-devops-security/main/slack-emojis/k8s.png",
                         "alt_text": "Kubernetes Icon"
                     ]
                 ],
@@ -118,7 +118,7 @@ def call(String buildStatus = 'STARTED') {
                     ],
                     "accessory": [
                         "type": "image",
-                        "image_url": "https://raw.githubusercontent.com/sidd-harth/devsecops-k8s-demo/main/slack-emojis/github-slack.png",
+                        "image_url": "https://raw.githubusercontent.com/csivaprasad-c/kubernetes-devops-security/main/slack-emojis/github.png",
                         "alt_text": "GitHub Icon"                      
                     ]
                 ],
