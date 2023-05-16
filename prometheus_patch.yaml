@@ -1,0 +1,5 @@
+alerting:
+  alertmanagers:
+    - static_configs:
+    - targets:
+        - http://devsecops-prasad-cloud.eastus.cloudapp.azure.com:9093/

@@ -1,0 +1,32 @@
+{
+    "groups": [
+        {
+            "name": "Rules",
+            "rules": [
+                {
+                    "alert": "InstanceDown",
+                    "expr": "up == 0",
+                    "for": "0m",
+                    "annotations": {
+                        "title": "Instance {{ $labels.instance }} down",
+                        "description": "{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 1 minute."
+                    },
+                    "labels": {
+                        "severity": "critical"
+                    }
+                },
+                {
+                    "alert": "KubernetesPodClientError",
+                    "expr": "istio_requests_total{reporter=\"destination\", response_code=\"403\"} > 10",
+                    "annotations": {
+                        "title": "Kubernetes Pod client error (instance {{ $labels.instance }})",
+                        "description": "Pod {{ $labels.instance }} of job {{ $labels.job }} reported client specific issues."
+                    },
+                    "labels": {
+                        "severity": "warning"
+                    }
+                }
+            ]
+        }
+    ]
+}
